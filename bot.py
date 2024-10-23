@@ -3,6 +3,7 @@ from telegram.ext import Application, CommandHandler, MessageHandler, filters
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
+from googleapiclient.http import MediaFileUpload
 import os
 
 TELEGRAM_BOT_TOKEN = "5707293090:AAHGLlHSx101F8T1DQYdcb9_MkRAjyCbt70"
@@ -12,8 +13,8 @@ SCOPES = ["https://www.googleapis.com/auth/youtube.upload"]
 async def send_login_link(update: Update, context):
     flow = InstalledAppFlow.from_client_secrets_file("client_secret.json", SCOPES)
     
-    # Generate the OAuth authorization URL using `urn:ietf:wg:oauth:2.0:oob` as the redirect_uri
-    auth_url, _ = flow.authorization_url(prompt='consent', redirect_uri='urn:ietf:wg:oauth:2.0:oob')
+    # Generate the OAuth authorization URL
+    auth_url, _ = flow.authorization_url(prompt='consent')
     
     # Send the login link to the user via Telegram
     await update.message.reply_text(f"Please click the link to authorize the bot: {auth_url}")
