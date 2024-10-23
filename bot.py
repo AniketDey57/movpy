@@ -103,8 +103,7 @@ async def main():
     application.add_handler(MessageHandler(filters.AUDIO, handle_audio))
 
     # Start the bot
-    await application.start_polling()
-    await application.idle()
+    application.run_polling()
 
 if __name__ == "__main__":
     import asyncio
