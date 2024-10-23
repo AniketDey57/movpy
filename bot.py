@@ -93,7 +93,7 @@ async def handle_audio(update: Update, context):
         os.remove(video_path)
 
 # Main function to run the bot
-async def main():
+def main():
     # Create Application instead of Updater
     application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
 
@@ -106,6 +106,4 @@ async def main():
     application.run_polling()
 
 if __name__ == "__main__":
-    import asyncio
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    main()
