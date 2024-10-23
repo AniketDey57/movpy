@@ -66,14 +66,14 @@ user_data = {}
 async def handle_photo(update: Update, context):
     file = await update.message.photo[-1].get_file()
     file_path = f"{update.message.from_user.id}_image.jpg"
-    await file.download(file_path)
+    await file.download_to_drive(file_path)
     user_data['image'] = file_path
     await update.message.reply_text("Image received! Now send me an audio file.")
 
 async def handle_audio(update: Update, context):
     file = await update.message.audio.get_file()
     file_path = f"{update.message.from_user.id}_audio.mp3"
-    await file.download(file_path)
+    await file.download_to_drive(file_path)
     user_data['audio'] = file_path
     await update.message.reply_text("Audio received! Now combining...")
 
